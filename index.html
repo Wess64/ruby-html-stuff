@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script>
+fetch("index.txt")
+.then(r=>r.text())
+.then(t=>document.write("<pre>"+t.replace(/[<&]/g,s=>({
+    "<":"&lt;",
+    "&":"&amp;"
+}[s]))+"</pre>"));
+</script>
