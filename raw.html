@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <script>
-fetch("index.txt")
+fetch("index.html")
 .then(r=>r.text())
 .then(t=>document.write("<pre>"+t.replace(/[<&]/g,s=>({
     "<":"&lt;",
