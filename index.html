@@ -3,288 +3,211 @@
 <head>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
   <link rel="stylesheet" href="styles/style.css"/>
-  <title>Hello, World!</title>
+  <title>Widget Collection Index</title>
+  <style>
+    body { font-family: monospace; display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; padding: 12px; margin: 0; }
+    .widget-box { display: inline-block; align-items: center; gap: 3px; border: 1px dotted #ccc; padding: 6px; border-radius: 4px; background: #fafafa; }
+    .copy-btn { font-size: 8px; background: #000; color: #fff; padding: 2px 5px; border-radius: 2px; cursor: pointer; border: none; font-family: monospace; }
+    .copy-btn:hover { background: #333; }
+    .search-container { width: 100%; margin-bottom: 12px; }
+  </style>
 </head>
 <body>
-  <details>
-    <summary>[<input type="text" style="padding:2px; background-color: black; color: white; border-radius: 5px; font-weight: bold; width: 100px;" placeholder="title here">]</summary>
-    <textarea style="resize: none; width: 200px; height: 100px;" placeholder="write here or whatever"></textarea>
-  </details>
-  
-  <details>
-  <!-- the EVIL hr -->
-    <summary style="display: block; border-style: inset; border-width: 1px; margin: 15px 0; height: 0px; cursor: pointer;"></summary>
-      [<input type="text" style="padding:2px; background-color: black; color: white; border-radius: 5px; font-weight: bold; width: 100px;" placeholder="title here">]<br>
-      <textarea style="resize: none; width: 200px; height: 100px;" placeholder="write here or whatever"></textarea>
-  </details>
-  
-  <details>
-    <summary>[<input type="text" style="padding:2px; background-color: black; color: gray; border-radius: 5px; width: 100px;" disabled value="thing">]</summary>
-    <textarea disabled style="resize: none; width: 200px; height: 100px;">write here</textarea>
-  </details>
-  
-  <br>
-  <hr>
-  
-  <span style="color: transparent; text-decoration: underline black;" data-reveal="color: black;" onclick="let current = this.getAttribute('style'); this.setAttribute('style', this.getAttribute('data-reveal')); this.setAttribute('data-reveal', current);">BOO</span>
-  
-  <ruby style="display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom;">
-    <rt style="display: block; line-height: 1; margin: 0; padding: 0;"><input type="checkbox" style="accent-color: black; cursor: pointer; margin: 0; width: 12px; height: 12px;" onclick="let txt = this.parentNode.nextElementSibling; let current = txt.getAttribute('style'); txt.setAttribute('style', txt.getAttribute('data-reveal')); txt.setAttribute('data-reveal', current);"></rt>
-    <span style="color: transparent; text-decoration: underline black;" data-reveal="color: black;">BOO</span>
-  </ruby>
-  
-  <code style="background: #000; color: #fff; padding: 2px 6px; border-radius: 3px; cursor: pointer; font-family: monospace;" onclick="navigator.clipboard.writeText(this.innerText); let old = this.innerText; this.innerText = '⇱'; setTimeout(() => this.innerText = old, 350);">
-    git commit -m "sick spoilers"
-  </code>
-  
-  <hr>
-  <br>
-  
-  <textarea style="resize: none; width: 200px; min-height: 50px; overflow-y: hidden; border: 1px solid black; padding: 4px; font-family: monospace;" placeholder="Type a lot here..." oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"></textarea>
 
-  <hr>
-  
-  <ruby style="display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; position: relative;">
-  <!-- Empty placeholder for the dynamic text input -->
-  <rt style="display: block; line-height: 1; margin: 0; padding: 0; min-height: 16px;"></rt>
-  
-  <!-- Clickable wavy text that spawns the input container -->
-  <span style="text-decoration: underline wavy red; text-underline-offset: 4px; cursor: pointer;" 
-        onclick="let rt = this.previousElementSibling; if(rt.children.length === 0) { let input = document.createElement('input'); input.type = 'text'; input.value = this.innerText; input.style = 'padding: 1px; font-size: 11px; border: 1px solid black; background: white; color: black; width: 60px; outline: none; margin-bottom: 2px;'; input.onkeydown = (e) => { if(e.key === 'Enter') { this.innerText = input.value; rt.innerHTML = ''; } }; rt.appendChild(input); input.focus(); }">
-    mastar list
-  </span>
-</ruby>
-
-  <br>
-  
-<span class="drop-spot" style="display: inline-block; vertical-align: bottom;">
-  <span class="target-box" style="display: block; text-decoration: underline; text-decoration-style: dotted; min-width: 60px; min-height: 1.2em;">
-    <ruby>
-      <b title="Drag me to the zone" style="cursor: move; touch-action: none; user-select: none; position: relative; display: inline-block; z-index: 10;" onmousedown="let el=this; el.style.position='absolute'; let move=(e)=>{ el.style.left=(e.pageX-15)+'px'; el.style.top=(e.pageY-10)+'px'; }; document.addEventListener('mousemove', move); document.addEventListener('mouseup', (e)=>{ document.removeEventListener('mousemove', move); el.style.pointerEvents='none'; let drop=document.elementFromPoint(e.clientX, e.clientY); el.style.pointerEvents='auto'; if(drop && drop.closest('.drop-spot')) { drop.closest('.drop-spot').querySelector('.target-box').appendChild(el); el.style.position='static'; } }, {once:true});" ontouchstart="let el=this; el.style.position='absolute'; let move=(e)=>{ let t=e.touches[0]; el.style.left=(t.pageX-15)+'px'; el.style.top=(t.pageY-10)+'px'; }; document.addEventListener('touchmove', move, {passive:false}); document.addEventListener('touchend', (e)=>{ document.removeEventListener('touchmove', move); el.style.pointerEvents='none'; let t=e.changedTouches[0]; let drop=document.elementFromPoint(t.clientX, t.clientY); el.style.pointerEvents='auto'; if(drop && drop.closest('.drop-spot')) { drop.closest('.drop-spot').querySelector('.target-box').appendChild(el); el.style.position='static'; } }, {once:true});">
-      touch me
-      </b>
+  <div class="search-container">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative;">
+      <rt style="display:block; font-size:10px; background:#000; color:#0f0; padding:1px 6px; border-radius:2px; min-height:14px; font-family:monospace;">
+        <span id="search-status">All visible</span>
+      </rt>
+      <input type="text" id="search-input" placeholder="🔍 search all widgets..." 
+             style="font-family:monospace; border:none; border-bottom:2px wavy black; outline:none; text-align:center; font-size:13px; padding:2px 8px; background:transparent;" 
+             oninput="filterWidgets(this.value)">
     </ruby>
-  </span>
-</span>
+  </div>
 
-<span class="drop-spot" style="display: inline-block; vertical-align: bottom; margin-left: 10px;">
-  <ruby style="display: inline-block; align-items: center;">
-    <rt style="display: block; line-height: 2; visibility: hidden; color: black; margin: 0; vertical-align: bottom;">
-      drop
-    </rt>
-    <span contextmenu="" class="target-box" style="height: 20px; border: 3px outset; background: gray; padding: 0 5px;" onmouseenter="this.previousElementSibling.style.visibility='visible';" onmouseleave="this.previousElementSibling.style.visibility='hidden';">
+  <div class="widget-box">
+    <details>
+      <summary>[<input type="text" style="padding:2px; background-color: black; color: white; border-radius: 5px; font-weight: bold; width: 100px;" placeholder="title here">]</summary>
+      <textarea style="resize: none; width: 200px; height: 100px;" placeholder="write here or whatever"></textarea>
+    </details>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <details>
+      <summary style="display: block; border-style: inset; border-width: 1px; margin: 5px 0; height: 0px; cursor: pointer;"></summary>
+      [<input type="text" style="padding:2px; background-color: black; color: white; border-radius: 5px; font-weight: bold; width: 100px;" placeholder="title here">]
+      <textarea style="resize: none; width: 200px; height: 100px;" placeholder="write here or whatever"></textarea>
+    </details>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <details>
+      <summary>[<input type="text" style="padding:2px; background-color: black; color: gray; border-radius: 5px; width: 100px;" disabled value="thing">]</summary>
+      <textarea disabled style="resize: none; width: 200px; height: 100px;">write here</textarea>
+    </details>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <span style="color: transparent; text-decoration: underline black; cursor:pointer;" data-reveal="color: black;" onclick="let current = this.getAttribute('style'); this.setAttribute('style', this.getAttribute('data-reveal')); this.setAttribute('data-reveal', current);">BOO</span>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom;">
+      <rt style="display: block; line-height: 1; margin: 0; padding: 0;"><input type="checkbox" style="accent-color: black; cursor: pointer; margin: 0; width: 12px; height: 12px;" onclick="let txt = this.parentNode.nextElementSibling; let current = txt.getAttribute('style'); txt.setAttribute('style', txt.getAttribute('data-reveal')); txt.setAttribute('data-reveal', current);"></rt>
+      <span style="color: transparent; text-decoration: underline black;" data-reveal="color: black;">BOO</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <code style="background: #000; color: #fff; padding: 2px 6px; border-radius: 3px; cursor: pointer; font-family: monospace;" onclick="navigator.clipboard.writeText(this.innerText); let old = this.innerText; this.innerText = '⇱'; setTimeout(() => this.innerText = old, 350);">copy me!!!</code>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <textarea style="resize: none; width: 200px; min-height: 50px; overflow-y: hidden; border: 1px solid black; padding: 4px; font-family: monospace;" placeholder="type a lot here idk..." oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"></textarea>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; position: relative;">
+      <rt style="display: block; line-height: 1; margin: 0; padding: 0; min-height: 16px;"></rt>
+      <span style="text-decoration: underline wavy red; text-underline-offset: 4px; cursor: pointer;" onclick="let rt = this.previousElementSibling; if(rt.children.length === 0) { let input = document.createElement('input'); input.type = 'text'; input.value = this.innerText; input.style = 'padding: 1px; font-size: 11px; border: 1px solid black; background: white; color: black; width: 60px; outline: none; margin-bottom: 2px;'; input.onkeydown = (e) => { if(e.key === 'Enter') { this.innerText = input.value; rt.innerHTML = ''; } }; rt.appendChild(input); input.focus(); }">mastar list</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <div style="display: flex; gap: 8px;">
+      <span class="drop-spot" style="display: inline-block; vertical-align: bottom;">
+        <span class="target-box" style="display: block; text-decoration: underline; text-decoration-style: dotted; min-width: 60px; min-height: 1.2em;">
+          <ruby>
+            <b title="Drag me to the zone" style="cursor: move; touch-action: none; user-select: none; position: relative; display: inline-block; z-index: 10;" onmousedown="let el=this; el.style.position='absolute'; let move=(e)=>{ el.style.left=(e.pageX-15)+'px'; el.style.top=(e.pageY-10)+'px'; }; document.addEventListener('mousemove', move); document.addEventListener('mouseup', (e)=>{ document.removeEventListener('mousemove', move); el.style.pointerEvents='none'; let drop=document.elementFromPoint(e.clientX, e.clientY); el.style.pointerEvents='auto'; if(drop && drop.closest('.drop-spot')) { drop.closest('.drop-spot').querySelector('.target-box').appendChild(el); el.style.position='static'; } }, {once:true});" ontouchstart="let el=this; el.style.position='absolute'; let move=(e)=>{ let t=e.touches[0]; el.style.left=(t.pageX-15)+'px'; el.style.top=(t.pageY-10)+'px'; }; document.addEventListener('touchmove', move, {passive:false}); document.addEventListener('touchend', (e)=>{ document.removeEventListener('touchmove', move); el.style.pointerEvents='none'; let t=e.changedTouches[0]; let drop=document.elementFromPoint(t.clientX, t.clientY); el.style.pointerEvents='auto'; if(drop && drop.closest('.drop-spot')) { drop.closest('.drop-spot').querySelector('.target-box').appendChild(el); el.style.position='static'; } }, {once:true});">touch me</b>
+          </ruby>
+        </span>
+      </span>
+      <span class="drop-spot" style="display: inline-block; vertical-align: bottom;">
+        <ruby style="display: inline-block; align-items: center;">
+          <rt style="display: block; line-height: 2; visibility: hidden; color: black; margin: 0; vertical-align: bottom;">drop</rt>
+          <span class="target-box" style="height: 20px; border: 3px outset; background: gray; padding: 0 5px;" onmouseenter="this.previousElementSibling.style.visibility='visible';" onmouseleave="this.previousElementSibling.style.visibility='hidden';"></span>
+        </ruby>
+      </span>
+    </div>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; position: relative;">
+      <rt style="display: flex; align-items: center; gap: 5px; font-size: 11px; font-family: monospace; line-height: 1; margin-bottom: 4px; user-select: none; color: black;">
+        <input type="checkbox" class="mark-checkbox" checked style="accent-color: #ffff00; cursor: pointer; width: 12px; height: 12px; margin: 0; border: 1px dotted black;" onclick="let r = this.closest('ruby'); let txt = r.querySelector('.mark-text'); let picker = r.querySelector('.color-picker'); txt.style.backgroundColor = this.checked ? picker.value : 'transparent'; this.style.accentColor = this.checked ? picker.value : 'black';">
+        <input type="color" class="color-picker" value="#ffff00" style="width: 20px; height: 25px; padding: 0; border: 1px solid transparent; background: transparent; cursor: pointer;" oninput="let r = this.closest('ruby'); let txt = r.querySelector('.mark-text'); let cb = r.querySelector('.mark-checkbox'); let hex = r.querySelector('.hex-code'); hex.innerText = this.value.toUpperCase(); if(cb.checked) { txt.style.backgroundColor = this.value; cb.style.accentColor = this.value; }">
+        <code class="hex-code" style="font-weight: bold; opacity: 50%">#FFFF00</code>
+      </rt>
+      <span class="mark-text" style="padding: 0 5px; color: black; background-color: #ffff00;">hi i can be colored now</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <span data-clicks="0" style="cursor:pointer; border-bottom: 1px outset;" onclick="this.dataset.clicks++; this.innerText = this.dataset.clicks">+</span>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <span contenteditable="true" spellcheck="false" style="border:1px dashed gray; padding:4px; font-family:monospace; font-size:12px; white-space:pre-wrap;" placeholder="edit me (im safe!!!)">edit me</span>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <code style="cursor:pointer; background:#111; color:#fff; padding:2px 6px;" onclick="this.innerText = ' x' + document.querySelectorAll('*').length;">count</code>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <style>
+      meter.number-line { -webkit-appearance: none; appearance: none; width: 160px; height: 20px; background: none; }
+      meter.number-line::-webkit-meter-bar { background: none; border: none; border-bottom: 2px solid #ccc; height: 20px; }
+      meter.number-line::-webkit-meter-optimum-value { background: gray; height: 2px; }
+    </style>
+    <span style="position:relative; display:inline-block;">
+      <meter class="number-line" min="0" max="100" value="42"></meter>
+      <span class="number-line-label" style="position:absolute; bottom:4px; font-family:monospace; font-size:11px; transform:translateX(-50%);"></span>
     </span>
-  </ruby>
-</span>
-  <hr>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
 
-<ruby style="display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; position: relative; margin: 0 5px;">
+  <div class="widget-box">
+    <span style="position:relative; display:inline-block; font-family:monospace;">
+      <select class="select-src" style="display:none;"><option>Option A</option><option>Option B</option></select>
+      <span class="select-trigger" style="border:1px solid black; padding:2px 20px 2px 6px; cursor:pointer; background:white;">select <span style="position:absolute; right:6px;">▾</span></span>
+      <ul class="select-list" style="display:none; position:absolute; top:100%; left:0; list-style:none; margin:0; padding:4px 0; border:1px solid black; background:white; min-width:120px; z-index:99;"></ul>
+      <img src="x" style="display:none;" onerror="let wrap=this.parentElement; let select=wrap.querySelector('.select-src'); let trigger=wrap.querySelector('.select-trigger'); let list=wrap.querySelector('.select-list'); let name='rg'+Math.random().toString(36).slice(2); let selectedLabel=trigger.firstChild; function makeLi(text, value, indent){ let li=document.createElement('li'); li.style.margin='2px 0'; li.style.paddingLeft=indent?'24px':'6px'; let radio=document.createElement('input'); radio.type='radio'; radio.name=name; radio.style.marginRight='6px'; radio.checked=(select.value===value); radio.onclick=function(){ select.value=value; selectedLabel.nodeValue=text+' '; list.style.display='none'; }; li.appendChild(radio); li.appendChild(document.createTextNode(text)); return li; } Array.from(select.children).forEach(function(node){ if(node.tagName==='OPTION'){ list.appendChild(makeLi(node.textContent, node.value, false)); } }); trigger.onclick=function(){ list.style.display=(list.style.display==='none')?'block':'none'; }; document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) list.style.display='none'; });">
+    </span>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+      <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
+      <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let pop=document.createElement('div'); pop.style='position:absolute; top:20px; left:0; border:1px solid black; background:white; padding:6px; z-index:99; text-align:center;'; let bits=[1,2,4,8,16,32,64,128]; let state=new Array(8).fill(0); let table=document.createElement('table'); table.style='border-collapse:collapse; margin:0 auto;'; let order=[[0,3],[1,4],[2,5],[6,7]]; let preview=document.createElement('div'); preview.style='font-size:20px; margin-top:4px;'; let copyBtn=document.createElement('div'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; margin-top:4px; border-radius:3px; display:inline-block;'; copyBtn.innerText='copy'; function update(){ let val=0; for(let i=0;i<8;i++){ if(state[i]) val+=bits[i]; } preview.innerText=String.fromCharCode(0x2800+val); } order.forEach(function(pair){ let tr=document.createElement('tr'); pair.forEach(function(idx){ let td=document.createElement('td'); td.style='width:16px; height:16px; border:1px solid #999; cursor:pointer; background:white;'; td.onclick=function(){ state[idx]=state[idx]?0:1; td.style.background=state[idx]?'black':'white'; update(); }; tr.appendChild(td); }); table.appendChild(tr); }); copyBtn.onclick=function(){ navigator.clipboard.writeText(preview.innerText); }; pop.appendChild(table); pop.appendChild(preview); pop.appendChild(copyBtn); rt.appendChild(pop); update(); } else { let pop=rt.firstElementChild; pop.style.display=(pop.style.display==='none')?'block':'none'; }">2x4</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+      <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
+      <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let lookup='䷁䷗䷆䷒䷎䷣䷭䷊䷏䷲䷧䷵䷽䷶䷟䷡䷇䷂䷜䷻䷦䷾䷯䷄䷬䷐䷮䷹䷞䷰䷛䷪䷖䷚䷃䷨䷳䷕䷑䷙䷢䷔䷿䷥䷷䷝䷱䷍䷓䷩䷺䷼䷴䷤䷸䷈䷋䷘䷅䷉䷠䷌䷫䷀'; let state=[0,0,0,0,0,0]; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:4px; border-collapse:collapse; z-index:99;'; for(let i=0;i<6;i++){ let tr=document.createElement('tr'); let td=document.createElement('td'); td.style='text-align:center; font-size:20px; cursor:pointer; padding:2px 10px; user-select:none;'; td.innerText='&quot;'; td.onclick=function(){ state[i]=state[i]?0:1; td.innerText=state[i]?'\' ':'&quot;'; update(); }; tr.appendChild(td); table.appendChild(tr); } let previewRow=document.createElement('tr'); let previewCell=document.createElement('td'); previewCell.style='text-align:center; font-size:24px; padding-top:6px;'; previewRow.appendChild(previewCell); table.appendChild(previewRow); let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.style='text-align:center; padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(previewCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); function update(){ let val=0; for(let i=0;i<6;i++){ val=(val<<1)|state[i]; } previewCell.innerText=lookup.charAt(val); } rt.appendChild(table); update(); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">1x6</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+      <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
+      <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let lookup=' ▘▝▀▖▌▞▛▗▚▐▜▄▙▟█'; let state=[0,0,0,0]; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:4px; border-collapse:collapse; z-index:99;'; let previewCell; function update(){ let val=state[0]*1+state[1]*2+state[2]*4+state[3]*8; previewCell.innerText=lookup.charAt(val); } let order=[[0,1],[2,3]]; order.forEach(function(pair){ let tr=document.createElement('tr'); pair.forEach(function(idx){ let td=document.createElement('td'); td.style='width:18px; height:18px; border:1px solid #999; cursor:pointer; background:white;'; td.onclick=function(){ state[idx]=state[idx]?0:1; td.style.background=state[idx]?'black':'white'; update(); }; tr.appendChild(td); }); table.appendChild(tr); }); let previewRow=document.createElement('tr'); previewCell=document.createElement('td'); previewCell.colSpan=2; previewCell.style='text-align:center; font-size:24px; padding-top:6px;'; previewRow.appendChild(previewCell); table.appendChild(previewRow); let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.colSpan=2; btnCell.style='text-align:center; padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(previewCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); rt.appendChild(table); update(); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">2x2</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+      <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
+      <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let lookup=' ╵╷│╴┘┐┤╶└┌├─┴┬┼'; let state=[0,0,0,0]; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:4px; border-collapse:collapse; z-index:99;'; let previewCell; function update(){ let val=state[0]*1+state[1]*2+state[2]*4+state[3]*8; previewCell.innerText=lookup.charAt(val); } function makeDirCell(idx,label){ let td=document.createElement('td'); td.style='text-align:center; width:22px; height:22px; cursor:pointer; color:#ccc; font-size:16px; user-select:none;'; td.innerText=label; td.onclick=function(){ state[idx]=state[idx]?0:1; td.style.color=state[idx]?'black':'#ccc'; update(); }; return td; } let row0=document.createElement('tr'); row0.appendChild(document.createElement('td')); row0.appendChild(makeDirCell(0,'▲')); row0.appendChild(document.createElement('td')); table.appendChild(row0); let row1=document.createElement('tr'); row1.appendChild(makeDirCell(2,'◀')); previewCell=document.createElement('td'); previewCell.style='text-align:center; font-size:22px;'; row1.appendChild(previewCell); row1.appendChild(makeDirCell(3,'▶')); table.appendChild(row1); let row2=document.createElement('tr'); row2.appendChild(document.createElement('td')); row2.appendChild(makeDirCell(1,'▼')); row2.appendChild(document.createElement('td')); table.appendChild(row2); let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.colSpan=3; btnCell.style='text-align:center; padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(previewCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); rt.appendChild(table); update(); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">box (border)</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+      <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
+      <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let lookup='ɐqɔpǝɟƃɥıɾʞןɯuodbɹsʇnʌʍxʎz'; let alphabet='abcdefghijklmnopqrstuvwxyz'; let punctSrc='!?.,&quot;\'^'; let punctDst='¡¿°‘„‚ᵥ'; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:6px; border-collapse:collapse; z-index:99;'; function transform(str){ let out=''; for(let i=0;i<str.length;i++){ let ch=str[i]; let lower=ch.toLowerCase(); let li=alphabet.indexOf(lower); if(li>=0){ out+=lookup.charAt(li); } else { let pi=punctSrc.indexOf(ch); out+= pi>=0 ? punctDst.charAt(pi) : ch; } } return out.split('').reverse().join(''); } let hintRow=document.createElement('tr'); let hintCell=document.createElement('td'); hintCell.style='font-size:10px; color:#666; text-align:center; padding-bottom:4px; transition:transform 0.2s;'; hintCell.innerText='! ? . , &quot; \' ^ will flip'; hintRow.appendChild(hintCell); table.appendChild(hintRow); let inputRow=document.createElement('tr'); let inputCell=document.createElement('td'); let input=document.createElement('input'); input.type='text'; input.placeholder='type here'; input.style='width:160px; font-family:monospace; font-size:12px; padding:2px;'; inputCell.appendChild(input); inputRow.appendChild(inputCell); table.appendChild(inputRow); let outputRow=document.createElement('tr'); let outputCell=document.createElement('td'); outputCell.style='font-family:monospace; font-size:16px; padding-top:6px; word-break:break-all; max-width:160px;'; outputRow.appendChild(outputCell); table.appendChild(outputRow); input.oninput=function(){ outputCell.innerText=transform(input.value); hintCell.style.transform= input.value.length>0 ? 'rotate(180deg)' : 'none'; }; let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.style='padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(outputCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); rt.appendChild(table); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">flip</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+      <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
+      <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let mode='full'; let axis='y'; let side='down'; let size='half'; let shadeVal=1; let fracVal=1; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:6px; border-collapse:collapse; z-index:99; font-size:12px;'; let modeRow=document.createElement('tr'); let modeCell=document.createElement('td'); let modeSelect=document.createElement('select'); ['full','shades','fractions','halfs'].forEach(function(m){ let opt=document.createElement('option'); opt.value=m; opt.innerText=m; modeSelect.appendChild(opt); }); modeSelect.value='full'; modeSelect.onchange=function(){ mode=modeSelect.value; renderControls(); update(); }; modeCell.appendChild(modeSelect); modeRow.appendChild(modeCell); table.appendChild(modeRow); let controlsRow=document.createElement('tr'); let controlsCell=document.createElement('td'); controlsRow.appendChild(controlsCell); table.appendChild(controlsRow); let previewRow=document.createElement('tr'); let previewCell=document.createElement('td'); previewCell.style='text-align:center; font-size:26px; padding-top:6px;'; previewRow.appendChild(previewCell); table.appendChild(previewRow); let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.style='text-align:center; padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(previewCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); function compute(){ if(mode==='full'){ return '█'; } if(mode==='shades'){ return shadeVal<4 ? String.fromCharCode(0x2590+shadeVal) : '█'; } if(mode==='fractions'){ return axis==='y' ? String.fromCharCode(0x2580+fracVal) : String.fromCharCode(0x2590-fracVal); } if(mode==='halfs'){ let map = size==='eighth' ? {up:'▔',down:' ',left:'▏',right:'▕'} : {up:'▀',down:'▄',left:'▌',right:'▐'}; return map[side]; } return ''; } function update(){ previewCell.innerText=compute(); } function renderControls(){ controlsCell.innerHTML=''; if(mode==='shades'){ let slider=document.createElement('input'); slider.type='range'; slider.min=1; slider.max=4; slider.value=shadeVal; slider.oninput=function(){ shadeVal=parseInt(slider.value); update(); }; controlsCell.appendChild(slider); } else if(mode==='fractions'){ let axisSelect=document.createElement('select'); ['y','x'].forEach(function(a){ let opt=document.createElement('option'); opt.value=a; opt.innerText=a; axisSelect.appendChild(opt); }); axisSelect.value=axis; axisSelect.onchange=function(){ axis=axisSelect.value; update(); }; controlsCell.appendChild(axisSelect); controlsCell.appendChild(document.createElement('br')); let slider=document.createElement('input'); slider.type='range'; slider.min=1; slider.max=8; slider.value=fracVal; slider.oninput=function(){ fracVal=parseInt(slider.value); update(); }; controlsCell.appendChild(slider); } else if(mode==='halfs'){ let sizeSelect=document.createElement('select'); ['half','eighth'].forEach(function(s){ let opt=document.createElement('option'); opt.value=s; opt.innerText= s==='half' ? '1/2' : '1/8'; sizeSelect.appendChild(opt); }); sizeSelect.value=size; sizeSelect.onchange=function(){ size=sizeSelect.value; update(); }; controlsCell.appendChild(sizeSelect); controlsCell.appendChild(document.createElement('br')); let miniTable=document.createElement('table'); miniTable.style='border-collapse:collapse; margin:4px auto;'; function sideCell(s,label){ let td=document.createElement('td'); td.style='text-align:center; width:20px; height:20px; cursor:pointer; color:#ccc;'; td.innerText=label; td.onclick=function(){ side=s; refreshSideColors(); update(); }; return td; } let r0=document.createElement('tr'); r0.appendChild(document.createElement('td')); let upCell=sideCell('up','▲'); r0.appendChild(upCell); r0.appendChild(document.createElement('td')); miniTable.appendChild(r0); let r1=document.createElement('tr'); let leftCell=sideCell('left','◀'); r1.appendChild(leftCell); r1.appendChild(document.createElement('td')); let rightCell=sideCell('right','▶'); r1.appendChild(rightCell); miniTable.appendChild(r1); let r2=document.createElement('tr'); r2.appendChild(document.createElement('td')); let downCell=sideCell('down','▼'); r2.appendChild(downCell); r2.appendChild(document.createElement('td')); miniTable.appendChild(r2); controlsCell.appendChild(miniTable); function refreshSideColors(){ upCell.style.color= side==='up' ? 'black':'#ccc'; downCell.style.color= side==='down' ? 'black':'#ccc'; leftCell.style.color= side==='left' ? 'black':'#ccc'; rightCell.style.color= side==='right' ? 'black':'#ccc'; } refreshSideColors(); } } renderControls(); update(); rt.appendChild(table); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">box (generic)</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+      <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
+      <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let pop=document.createElement('div'); pop.style='position:absolute; top:20px; left:0; border:1px solid black; background:white; padding:6px; z-index:99; text-align:center;'; let state=Array(16).fill(0); let table=document.createElement('table'); table.style='border-collapse:collapse; margin:0 auto;'; let preview=document.createElement('div'); preview.style='font-size:24px; margin-top:4px; font-family:monospace; letter-spacing:4px;'; let copyBtn=document.createElement('div'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; margin-top:4px; border-radius:3px; display:inline-block;'; copyBtn.innerText='copy'; function update(){ let char1=0x2800; let char2=0x2800; let dots=[1,2,4,8,16,32,64,128]; let map1=[0,4,8,1,5,9,12,13]; let map2=[2,6,10,3,7,11,14,15]; for(let i=0;i<8;i++){ if(state[map1[i]]) char1 += dots[i]; if(state[map2[i]]) char2 += dots[i]; } preview.innerText=String.fromCharCode(char1)+String.fromCharCode(char2); } let order=[[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15]]; order.forEach(function(row){ let tr=document.createElement('tr'); row.forEach(function(idx){ let td=document.createElement('td'); td.style='width:16px; height:16px; border:1px solid #999; cursor:pointer; background:white;'; td.onclick=function(){ state[idx]=state[idx]?0:1; td.style.background=state[idx]?'black':'white'; update(); }; tr.appendChild(td); }); table.appendChild(tr); }); copyBtn.onclick=function(){ navigator.clipboard.writeText(preview.innerText); }; pop.appendChild(table); pop.appendChild(preview); pop.appendChild(copyBtn); rt.appendChild(pop); update(); } else { let pop=rt.firstElementChild; pop.style.display=(pop.style.display==='none')?'block':'none'; }">4x4</span>
+    </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
   
-  <rt style="display: flex; align-items: center; gap: 5px; font-size: 11px; font-family: monospace; line-height: 1; margin-bottom: 4px; user-select: none; color: black;">
-    <input type="checkbox" class="mark-checkbox" checked 
-           style="accent-color: #ffff00; cursor: pointer; width: 12px; height: 12px; margin: 0; border: 1px dotted black;" 
-           onclick="let r = this.closest('ruby'); let txt = r.querySelector('.mark-text'); let picker = r.querySelector('.color-picker'); txt.style.backgroundColor = this.checked ? picker.value : 'transparent'; this.style.accentColor = this.checked ? picker.value : 'black';">
-    <input type="color" class="color-picker" value="#ffff00" 
-           style="width: 20px; height: 25px; padding: 0; border: 1px solid transparent; background: transparent; cursor: pointer;"
-           oninput="let r = this.closest('ruby'); let txt = r.querySelector('.mark-text'); let cb = r.querySelector('.mark-checkbox'); let hex = r.querySelector('.hex-code'); hex.innerText = this.value.toUpperCase(); if(cb.checked) { txt.style.backgroundColor = this.value; cb.style.accentColor = this.value; }">
-    
-    <code class="hex-code" style="font-weight: bold; opacity: 50%">#FFFF00</code>
-  </rt>
-  
-  <span class="mark-text" style="padding: 0 5px; color: black; background-color: #ffff00;">
-    hi i can be colored now
-  </span>
-
-</ruby>
-  <hr>
-  <span data-clicks="0" style="cursor:pointer; border-bottom: 1px outset;" 
-  onclick="this.dataset.clicks++; this.innerText = this.dataset.clicks">
-    +
-  </span>
-  <br>
-  <span contenteditable="true" spellcheck="false" style="border:1px dashed gray; padding:4px; font-family:monospace; font-size:12px; white-space:pre-wrap;" oninput="try{ } catch(e){}" placeholder="edit me (im safe!!!)"></span>
-  <br>
-  <code style="cursor:pointer; background:#111; color:#fff; padding:2px 6px;" onclick="this.innerText = ' x' + document.querySelectorAll('*').length;">count</code>
-  
-  <hr>
-
-<style>
-meter.number-line {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 200px;
-  height: 20px;
-  background: none;
-}
-meter.number-line::-webkit-meter-bar {
-  background: none;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  height: 20px;
-}
-meter.number-line::-webkit-meter-optimum-value,
-meter.number-line::-webkit-meter-suboptimum-value,
-meter.number-line::-webkit-meter-even-less-good-value {
-  background: gray;
-  height: 2px;
-  align-self: flex-end;
-}
-</style>
-
-<span style="position:relative; display:inline-block;">
-  <meter class="number-line" min="0" max="100" value="42"></meter>
-  <span class="number-line-label" style="position:absolute; bottom:4px; font-family:monospace; font-size:11px; transform:translateX(-50%);"></span>
-</span>
-
-<script>
-document.querySelectorAll('meter.number-line').forEach(function(m){
-  let label = m.nextElementSibling;
-  let pct = ((m.value - m.min) / (m.max - m.min)) * 100;
-  label.style.left = pct + '%';
-  label.innerText = m.value;
-});
-</script>
-  
-  <hr>
-  
-<span style="position:relative; display:inline-block; font-family:monospace;">
-  <select class="select-src" style="display:none;">
-    <!-- options go here -->
-    
-  </select>
-  <span class="select-trigger" style="border:1px solid black; padding:2px 20px 2px 6px; cursor:pointer; background:white;">
-    select <span style="position:absolute; right:6px;">▾</span>
-  </span>
-  <ul class="select-list" style="display:none; position:absolute; top:100%; left:0; list-style:none; margin:0; padding:4px 0; border:1px solid black; background:white; min-width:150px; z-index:99;"></ul><img src="x" style="display:none;" onerror="let wrap=this.parentElement; let select=wrap.querySelector('.select-src'); let trigger=wrap.querySelector('.select-trigger'); let list=wrap.querySelector('.select-list'); let name='rg'+Math.random().toString(36).slice(2); let selectedLabel=trigger.firstChild; function makeLi(text, value, indent){ let li=document.createElement('li'); li.style.margin='2px 0'; li.style.paddingLeft=indent?'24px':'6px'; let radio=document.createElement('input'); radio.type='radio'; radio.name=name; radio.style.marginRight='6px'; radio.checked=(select.value===value); radio.onclick=function(){ select.value=value; selectedLabel.nodeValue=text+' '; list.style.display='none'; }; li.appendChild(radio); li.appendChild(document.createTextNode(text)); return li; } Array.from(select.children).forEach(function(node){ if(node.tagName==='OPTION'){ list.appendChild(makeLi(node.textContent, node.value, false)); } else if(node.tagName==='OPTGROUP'){ let label=document.createElement('li'); label.innerText=node.label; label.style.fontWeight='bold'; label.style.userSelect='none'; label.style.cursor='default'; label.style.margin='4px 0 0 0'; label.style.paddingLeft='6px'; list.appendChild(label); Array.from(node.children).forEach(function(opt){ list.appendChild(makeLi(opt.textContent, opt.value, true)); }); } }); trigger.onclick=function(){ list.style.display=(list.style.display==='none')?'block':'none'; }; document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) list.style.display='none'; });"></span></body>
-</html>
-
-<hr>
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
-  <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
-  <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let pop=document.createElement('div'); pop.style='position:absolute; top:20px; left:0; border:1px solid black; background:white; padding:6px; z-index:99; text-align:center;'; let bits=[1,2,4,8,16,32,64,128]; let state=new Array(8).fill(0); let table=document.createElement('table'); table.style='border-collapse:collapse; margin:0 auto;'; let order=[[0,3],[1,4],[2,5],[6,7]]; let preview=document.createElement('div'); preview.style='font-size:20px; margin-top:4px;'; let copyBtn=document.createElement('div'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; margin-top:4px; border-radius:3px; display:inline-block;'; copyBtn.innerText='copy'; function update(){ let val=0; for(let i=0;i<8;i++){ if(state[i]) val+=bits[i]; } preview.innerText=String.fromCharCode(0x2800+val); } order.forEach(function(pair){ let tr=document.createElement('tr'); pair.forEach(function(idx){ let td=document.createElement('td'); td.style='width:16px; height:16px; border:1px solid #999; cursor:pointer; background:white;'; td.onclick=function(){ state[idx]=state[idx]?0:1; td.style.background=state[idx]?'black':'white'; update(); }; tr.appendChild(td); }); table.appendChild(tr); }); copyBtn.onclick=function(){ navigator.clipboard.writeText(preview.innerText); }; pop.appendChild(table); pop.appendChild(preview); pop.appendChild(copyBtn); rt.appendChild(pop); update(); } else { let pop=rt.firstElementChild; pop.style.display=(pop.style.display==='none')?'block':'none'; }">
-    ⢕
-  </span>
-</ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
-  <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
-  <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let lookup='䷁䷗䷆䷒䷎䷣䷭䷊䷏䷲䷧䷵䷽䷶䷟䷡䷇䷂䷜䷻䷦䷾䷯䷄䷬䷐䷮䷹䷞䷰䷛䷪䷖䷚䷃䷨䷳䷕䷑䷙䷢䷔䷿䷥䷷䷝䷱䷍䷓䷩䷺䷼䷴䷤䷸䷈䷋䷘䷅䷉䷠䷌䷫䷀'; let state=[0,0,0,0,0,0]; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:4px; border-collapse:collapse; z-index:99;'; for(let i=0;i<6;i++){ let tr=document.createElement('tr'); let td=document.createElement('td'); td.style='text-align:center; font-size:20px; cursor:pointer; padding:2px 10px; user-select:none;'; td.innerText='&quot;'; td.onclick=function(){ state[i]=state[i]?0:1; td.innerText=state[i]?'\' ':'&quot;'; update(); }; tr.appendChild(td); table.appendChild(tr); } let previewRow=document.createElement('tr'); let previewCell=document.createElement('td'); previewCell.style='text-align:center; font-size:24px; padding-top:6px;'; previewRow.appendChild(previewCell); table.appendChild(previewRow); let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.style='text-align:center; padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(previewCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); function update(){ let val=0; for(let i=0;i<6;i++){ val=(val<<1)|state[i]; } previewCell.innerText=lookup.charAt(val); } rt.appendChild(table); update(); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">
-    ䷿
-  </span>
-</ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
-  <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
-  <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let lookup=' ▘▝▀▖▌▞▛▗▚▐▜▄▙▟█'; let state=[0,0,0,0]; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:4px; border-collapse:collapse; z-index:99;'; let previewCell; function update(){ let val=state[0]*1+state[1]*2+state[2]*4+state[3]*8; previewCell.innerText=lookup.charAt(val); } let order=[[0,1],[2,3]]; order.forEach(function(pair){ let tr=document.createElement('tr'); pair.forEach(function(idx){ let td=document.createElement('td'); td.style='width:18px; height:18px; border:1px solid #999; cursor:pointer; background:white;'; td.onclick=function(){ state[idx]=state[idx]?0:1; td.style.background=state[idx]?'black':'white'; update(); }; tr.appendChild(td); }); table.appendChild(tr); }); let previewRow=document.createElement('tr'); previewCell=document.createElement('td'); previewCell.colSpan=2; previewCell.style='text-align:center; font-size:24px; padding-top:6px;'; previewRow.appendChild(previewCell); table.appendChild(previewRow); let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.colSpan=2; btnCell.style='text-align:center; padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(previewCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); rt.appendChild(table); update(); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">
-    ▚
-  </span>
-</ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
-  <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
-  <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let lookup=' ╵╷│╴┘┐┤╶└┌├─┴┬┼'; let state=[0,0,0,0]; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:4px; border-collapse:collapse; z-index:99;'; let previewCell; function update(){ let val=state[0]*1+state[1]*2+state[2]*4+state[3]*8; previewCell.innerText=lookup.charAt(val); } function makeDirCell(idx,label){ let td=document.createElement('td'); td.style='text-align:center; width:22px; height:22px; cursor:pointer; color:#ccc; font-size:16px; user-select:none;'; td.innerText=label; td.onclick=function(){ state[idx]=state[idx]?0:1; td.style.color=state[idx]?'black':'#ccc'; update(); }; return td; } let row0=document.createElement('tr'); row0.appendChild(document.createElement('td')); row0.appendChild(makeDirCell(0,'▲')); row0.appendChild(document.createElement('td')); table.appendChild(row0); let row1=document.createElement('tr'); row1.appendChild(makeDirCell(2,'◀')); previewCell=document.createElement('td'); previewCell.style='text-align:center; font-size:22px;'; row1.appendChild(previewCell); row1.appendChild(makeDirCell(3,'▶')); table.appendChild(row1); let row2=document.createElement('tr'); row2.appendChild(document.createElement('td')); row2.appendChild(makeDirCell(1,'▼')); row2.appendChild(document.createElement('td')); table.appendChild(row2); let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.colSpan=3; btnCell.style='text-align:center; padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(previewCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); rt.appendChild(table); update(); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">
-    ┼
-  </span>
-</ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
-  <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
-  <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let lookup='ɐqɔpǝɟƃɥıɾʞןɯuodbɹsʇnʌʍxʎz'; let alphabet='abcdefghijklmnopqrstuvwxyz'; let punctSrc='!?.,&quot;\'^'; let punctDst='¡¿°‘„‚ᵥ'; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:6px; border-collapse:collapse; z-index:99;'; function transform(str){ let out=''; for(let i=0;i<str.length;i++){ let ch=str[i]; let lower=ch.toLowerCase(); let li=alphabet.indexOf(lower); if(li>=0){ out+=lookup.charAt(li); } else { let pi=punctSrc.indexOf(ch); out+= pi>=0 ? punctDst.charAt(pi) : ch; } } return out.split('').reverse().join(''); } let hintRow=document.createElement('tr'); let hintCell=document.createElement('td'); hintCell.style='font-size:10px; color:#666; text-align:center; padding-bottom:4px; transition:transform 0.2s;'; hintCell.innerText='! ? . , &quot; \' ^ will flip'; hintRow.appendChild(hintCell); table.appendChild(hintRow); let inputRow=document.createElement('tr'); let inputCell=document.createElement('td'); let input=document.createElement('input'); input.type='text'; input.placeholder='type here'; input.style='width:160px; font-family:monospace; font-size:12px; padding:2px;'; inputCell.appendChild(input); inputRow.appendChild(inputCell); table.appendChild(inputRow); let outputRow=document.createElement('tr'); let outputCell=document.createElement('td'); outputCell.style='font-family:monospace; font-size:16px; padding-top:6px; word-break:break-all; max-width:160px;'; outputRow.appendChild(outputCell); table.appendChild(outputRow); input.oninput=function(){ outputCell.innerText=transform(input.value); hintCell.style.transform= input.value.length>0 ? 'rotate(180deg)' : 'none'; }; let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.style='padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(outputCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); rt.appendChild(table); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">
-    dıןɟ
-  </span>
-</ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
-  <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
-  <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="let rt=this.previousElementSibling; if(rt.children.length===0){ let mode='full'; let axis='y'; let side='down'; let size='half'; let shadeVal=1; let fracVal=1; let table=document.createElement('table'); table.style='position:absolute; top:20px; left:0; background:white; border:1px solid black; padding:6px; border-collapse:collapse; z-index:99; font-size:12px;'; let modeRow=document.createElement('tr'); let modeCell=document.createElement('td'); let modeSelect=document.createElement('select'); ['full','shades','fractions','halfs'].forEach(function(m){ let opt=document.createElement('option'); opt.value=m; opt.innerText=m; modeSelect.appendChild(opt); }); modeSelect.value='full'; modeSelect.onchange=function(){ mode=modeSelect.value; renderControls(); update(); }; modeCell.appendChild(modeSelect); modeRow.appendChild(modeCell); table.appendChild(modeRow); let controlsRow=document.createElement('tr'); let controlsCell=document.createElement('td'); controlsRow.appendChild(controlsCell); table.appendChild(controlsRow); let previewRow=document.createElement('tr'); let previewCell=document.createElement('td'); previewCell.style='text-align:center; font-size:26px; padding-top:6px;'; previewRow.appendChild(previewCell); table.appendChild(previewRow); let btnRow=document.createElement('tr'); let btnCell=document.createElement('td'); btnCell.style='text-align:center; padding-top:4px;'; let copyBtn=document.createElement('span'); copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; border-radius:3px;'; copyBtn.innerText='copy'; copyBtn.onclick=function(){ navigator.clipboard.writeText(previewCell.innerText); }; btnCell.appendChild(copyBtn); btnRow.appendChild(btnCell); table.appendChild(btnRow); function compute(){ if(mode==='full'){ return '█'; } if(mode==='shades'){ return shadeVal<4 ? String.fromCharCode(0x2590+shadeVal) : '█'; } if(mode==='fractions'){ return axis==='y' ? String.fromCharCode(0x2580+fracVal) : String.fromCharCode(0x2590-fracVal); } if(mode==='halfs'){ let map = size==='eighth' ? {up:'▔',down:'▁',left:'▏',right:'▕'} : {up:'▀',down:'▄',left:'▌',right:'▐'}; return map[side]; } return ''; } function update(){ previewCell.innerText=compute(); } function renderControls(){ controlsCell.innerHTML=''; if(mode==='shades'){ let slider=document.createElement('input'); slider.type='range'; slider.min=1; slider.max=4; slider.value=shadeVal; slider.oninput=function(){ shadeVal=parseInt(slider.value); update(); }; controlsCell.appendChild(slider); } else if(mode==='fractions'){ let axisSelect=document.createElement('select'); ['y','x'].forEach(function(a){ let opt=document.createElement('option'); opt.value=a; opt.innerText=a; axisSelect.appendChild(opt); }); axisSelect.value=axis; axisSelect.onchange=function(){ axis=axisSelect.value; update(); }; controlsCell.appendChild(axisSelect); controlsCell.appendChild(document.createElement('br')); let slider=document.createElement('input'); slider.type='range'; slider.min=1; slider.max=8; slider.value=fracVal; slider.oninput=function(){ fracVal=parseInt(slider.value); update(); }; controlsCell.appendChild(slider); } else if(mode==='halfs'){ let sizeSelect=document.createElement('select'); ['half','eighth'].forEach(function(s){ let opt=document.createElement('option'); opt.value=s; opt.innerText= s==='half' ? '1/2' : '1/8'; sizeSelect.appendChild(opt); }); sizeSelect.value=size; sizeSelect.onchange=function(){ size=sizeSelect.value; update(); }; controlsCell.appendChild(sizeSelect); controlsCell.appendChild(document.createElement('br')); let miniTable=document.createElement('table'); miniTable.style='border-collapse:collapse; margin:4px auto;'; function sideCell(s,label){ let td=document.createElement('td'); td.style='text-align:center; width:20px; height:20px; cursor:pointer; color:#ccc;'; td.innerText=label; td.onclick=function(){ side=s; refreshSideColors(); update(); }; return td; } let r0=document.createElement('tr'); r0.appendChild(document.createElement('td')); let upCell=sideCell('up','▲'); r0.appendChild(upCell); r0.appendChild(document.createElement('td')); miniTable.appendChild(r0); let r1=document.createElement('tr'); let leftCell=sideCell('left','◀'); r1.appendChild(leftCell); r1.appendChild(document.createElement('td')); let rightCell=sideCell('right','▶'); r1.appendChild(rightCell); miniTable.appendChild(r1); let r2=document.createElement('tr'); r2.appendChild(document.createElement('td')); let downCell=sideCell('down','▼'); r2.appendChild(downCell); r2.appendChild(document.createElement('td')); miniTable.appendChild(r2); controlsCell.appendChild(miniTable); function refreshSideColors(){ upCell.style.color= side==='up' ? 'black':'#ccc'; downCell.style.color= side==='down' ? 'black':'#ccc'; leftCell.style.color= side==='left' ? 'black':'#ccc'; rightCell.style.color= side==='right' ? 'black':'#ccc'; } refreshSideColors(); } } renderControls(); update(); rt.appendChild(table); } else { let table=rt.firstElementChild; table.style.display=(table.style.display==='none')?'block':'none'; }">
-    █
-  </span>
-</ruby>
-
-<hr>
-
-<h1> the ambition zone. </h1>
-<p>these one are GENUINELY complex.</p>
-<br>
-<br>
-<br>
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
-  <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
-  <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="
-    let rt=this.previousElementSibling;
-    if(rt.children.length===0){
-      let pop=document.createElement('div');
-      pop.style='position:absolute; top:20px; left:0; border:1px solid black; background:white; padding:6px; z-index:99; text-align:center;';
-      
-      let state=Array(16).fill(0);
-      let table=document.createElement('table');
-      table.style='border-collapse:collapse; margin:0 auto;';
-      
-      let preview=document.createElement('div');
-      preview.style='font-size:24px; margin-top:4px; font-family:monospace; letter-spacing:4px;';
-      
-      let copyBtn=document.createElement('div');
-      copyBtn.style='cursor:pointer; background:#000; color:#fff; font-size:11px; padding:2px 6px; margin-top:4px; border-radius:3px; display:inline-block;';
-      copyBtn.innerText='copy';
-      
-      function update(){
-        let char1=0x2800;
-        let char2=0x2800;
-        let dots=[1,2,4,8,16,32,64,128];
-        // Left half mapping (columns 0,1)
-        // dot order: 1: (0,0), 2: (1,0), 3: (2,0), 4: (0,1), 5: (1,1), 6: (2,1), 7: (3,0), 8: (3,1)
-        let map1=[0,4,8,1,5,9,12,13];
-        // Right half mapping (columns 2,3)
-        let map2=[2,6,10,3,7,11,14,15];
-        for(let i=0;i<8;i++){
-          if(state[map1[i]]) char1 += dots[i];
-          if(state[map2[i]]) char2 += dots[i];
-        }
-        preview.innerText=String.fromCharCode(char1)+String.fromCharCode(char2);
-      }
-      
-      // 4x4 grid
-      let order=[
-        [0,1,2,3],
-        [4,5,6,7],
-        [8,9,10,11],
-        [12,13,14,15]
-      ];
-      
-      order.forEach(function(row){
-        let tr=document.createElement('tr');
-        row.forEach(function(idx){
-          let td=document.createElement('td');
-          td.style='width:16px; height:16px; border:1px solid #999; cursor:pointer; background:white;';
-          td.onclick=function(){
-            state[idx]=state[idx]?0:1;
-            td.style.background=state[idx]?'black':'white';
-            update();
-          };
-          tr.appendChild(td);
-        });
-        table.appendChild(tr);
-      });
-      
-      copyBtn.onclick=function(){
-        navigator.clipboard.writeText(preview.innerText);
-      };
-      
-      pop.appendChild(table);
-      pop.appendChild(preview);
-      pop.appendChild(copyBtn);
-      rt.appendChild(pop);
-      update();
-    } else {
-      let pop=rt.firstElementChild;
-      pop.style.display=(pop.style.display==='none')?'block':'none';
-    }
-  ">
-    ⢕⢕
-  </span>
-</ruby>
-
-<ruby id="synth-root" style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+  <div class="widget-box">
+    <ruby id="synth-root" style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
   <rt style="display:block; position:absolute; bottom:100%; left:50%; transform:translateX(-50%); line-height:0; margin:0; padding:0; display:inline-flex; align-items:center; gap:4px; margin-bottom:3px;">
     <svg id="synth-mini-preview" width="30" height="14" style="border:1px solid #ccc; background:#f9f9f9; vertical-align:middle;"></svg>
     <span style="cursor:pointer; font-size:10px; border:1px solid black; padding:0 3px; background:#000; color:#fff; border-radius:3px; user-select:none; line-height:1.2;" onclick="event.stopPropagation(); if(window._playWave) window._playWave();">▶</span>
@@ -439,8 +362,11 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
     }
   ">wave</span>
 </ruby>
-
-<ruby style="display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; position: relative; font-family: monospace;">
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby style="display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom; position: relative; font-family: monospace;">
   <rt style="display: block; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); line-height: 0; margin: 0; padding: 0;">
     <canvas id="live-ext-canvas" width="120" height="60" style="width: 120px; height: 60px; background: #111; display: block; image-rendering: pixelated; border: 2px solid black; margin-bottom: 3px;"></canvas>
   </rt>
@@ -460,9 +386,9 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
       let editor = document.createElement('textarea');
       editor.style = 'width: 100%; box-sizing: border-box; height: 85px; font-family: monospace; font-size: 9px; background: #16161a; color: #f8f8f2; border: 1px solid black; padding: 4px; resize: none;';
       
-      /* LocalStorage Loader */
+      /* LocalStorage */
       let cachedScript = localStorage.getItem('_vfs_shader_src');
-      editor.value = cachedScript || '/* RUNTIME REGISTERS:\n * x = pixel column (0 to 119)\n * y = pixel row (0 to 59)\n * t = internal oscillator clock\n */\n\nr = Math.floor(Math.random() * 255);\ng = r;\nb = r;';
+      editor.value = cachedScript || '/* STUFF TO USE!!! \n * x = pixel column (0 to 119)\n * y = pixel row (0 to 59)\n * t = internal oscillator clock\n */\n\nr = Math.floor(Math.random() * 255);\ng = r;\nb = r;';
       win.appendChild(editor);
 
       /* Tight Action Button Layout */
@@ -555,8 +481,11 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
     }
   ">shaders</span>
 </ruby>
-
-<ruby id="conway-root" style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby id="conway-root" style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
   <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
   <span id="conway-trigger" style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer; color: black;" onclick="
     let rt=this.previousElementSibling;
@@ -643,8 +572,11 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
     conway
   </span>
 </ruby>
-
-<ruby id="floatwin-root" style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby id="floatwin-root" style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
   <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
   <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="
     let rt = this.previousElementSibling;
@@ -724,17 +656,20 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
       win.style.display = (win.style.display === 'none') ? 'flex' : 'none';
     }
   ">
-    ["""]
+    popup
   </span>
-
-  <pop-window style="display:none;">
-    <title>My Custom Chat</title>
-    <strong>System Online</strong>
-    <p>The title tag was safely stripped from this body text and injected up into the drag bar!</p>
+        
+    <pop-window style="display:none;">
+    <title>hi</title>
+    <strong>woaaa</strong>
+    <p>im am window</p>
   </pop-window>
 </ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
   <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
   <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="
     let rt=this.previousElementSibling;
@@ -774,8 +709,11 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
     }
   ">base</span>
 </ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
   <rt style="display:block; line-height:1; margin:0; padding:0; min-height:16px;"></rt>
   <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="
     let rt=this.previousElementSibling;
@@ -922,8 +860,11 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
     }
   ">morse</span>
 </ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
   <rt style="display:block; line-height:1; margin:0; padding:0; position:relative; text-align:center;">
     <span class="rv-value" style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="
       let valSpan=this;
@@ -1051,8 +992,11 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
   </rt>
   <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;">readout</span>
 </ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
   <rt class="logic-readout" style="display:block; position:absolute; bottom:100%; left:50%; transform:translateX(-50%); line-height:1; margin:0; padding:2px 6px; font-size:10px; background:#000; color:#0f0; border-radius:3px; border:1px solid #333; white-space:nowrap; margin-bottom:3px;">0 && 0 == □</rt>
   <span style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="
     let rubyContainer=this.parentElement;
@@ -1126,8 +1070,11 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
     }
   ">logic</span>
 </ruby>
-
-<ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
   <rt style="display:block; position:absolute; bottom:100%; left:50%; transform:translateX(-50%); line-height:0; margin:0; padding:3px; background:#111; border:2px solid black; border-radius:2px; margin-bottom:3px;">
     <div class="tinyscreen-grid" style="display:grid; grid-template-columns:repeat(4,9px); grid-template-rows:repeat(3,9px); gap:1px;"></div>
   </rt>
@@ -1280,3 +1227,743 @@ document.querySelectorAll('meter.number-line').forEach(function(m){
     }
   ">screen</span>
 </ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+  
+  <div class="widget-box">
+    <ruby style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; position:relative; font-family:monospace;">
+  <rt class="bw-rt" style="display:block; position:relative; line-height:1; margin:0; padding:0; min-height:16px;">
+    <span class="bw-rt-display" style="display:none; font-size:10px; background:#000; color:#0f0; padding:1px 4px; border-radius:2px;"></span>
+  </rt>
+  <span class="bw-main" style="text-decoration:underline wavy black; text-underline-offset:4px; cursor:pointer;" onclick="
+    let rubyContainer=this.parentElement;
+    let rt=rubyContainer.querySelector('.bw-rt');
+    let mainSpan=this;
+    let toggleBtn=rubyContainer.querySelector('.bw-toggle');
+    let rtDisplay=rt.querySelector('.bw-rt-display');
+
+    if(!rubyContainer._bw){
+      let state={ version:'1.0.0', hooks:[], baseText:'widget', baseRt:'', mode:'build' };
+      rubyContainer._bw=state;
+
+      let dock=document.createElement('div');
+      dock.className='bw-dock';
+      dock.style='position:absolute; top:20px; left:0; border:1px solid black; background:white; padding:8px; z-index:999; font-size:10px; font-family:monospace; color:#000; box-shadow:3px 3px 0px black; width:380px;';
+
+      // TOOLBAR
+      let toolbar=document.createElement('div');
+      toolbar.style='display:flex; gap:4px; margin-bottom:6px; flex-wrap:wrap; align-items:center;';
+      let verInput=document.createElement('input'); verInput.type='text'; verInput.value=state.version; verInput.placeholder='v1.0'; verInput.style='width:42px; font-size:9px; border:1px solid #666; font-family:monospace; text-align:center;';
+      verInput.oninput=function(){ state.version=verInput.value; };
+
+      let exportBtn=document.createElement('span'); exportBtn.innerText='export'; exportBtn.style='cursor:pointer; background:#000; color:#fff; padding:2px 5px; border-radius:3px;';
+      let importBtn=document.createElement('span'); importBtn.innerText='import'; importBtn.style='cursor:pointer; background:#000; color:#fff; padding:2px 5px; border-radius:3px;';
+      let clearBtn=document.createElement('span'); clearBtn.innerText='clear'; clearBtn.style='cursor:pointer; background:#900; color:#fff; padding:2px 5px; border-radius:3px;';
+      let goLiveBtn=document.createElement('span'); goLiveBtn.innerText='use widget ▶'; goLiveBtn.style='cursor:pointer; background:#060; color:#fff; padding:2px 5px; border-radius:3px;';
+      
+      toolbar.appendChild(document.createTextNode('v:')); toolbar.appendChild(verInput);
+      toolbar.appendChild(exportBtn); toolbar.appendChild(importBtn); toolbar.appendChild(clearBtn); toolbar.appendChild(goLiveBtn);
+      dock.appendChild(toolbar);
+
+      let baseRow=document.createElement('div');
+      baseRow.style='display:flex; gap:6px; margin-bottom:6px;';
+      let baseTextIn=document.createElement('input'); baseTextIn.type='text'; baseTextIn.value=state.baseText; baseTextIn.placeholder='base text'; baseTextIn.style='width:120px;';
+      let baseRtIn=document.createElement('input'); baseRtIn.type='text'; baseRtIn.value=state.baseRt; baseRtIn.placeholder='base rt'; baseRtIn.style='width:120px;';
+      baseTextIn.oninput=function(){ state.baseText=baseTextIn.value; };
+      baseRtIn.oninput=function(){ state.baseRt=baseRtIn.value; };
+      baseRow.appendChild(baseTextIn); baseRow.appendChild(baseRtIn);
+      dock.appendChild(baseRow);
+
+      let hookListEl=document.createElement('div');
+      hookListEl.style='display:flex; flex-direction:column; gap:5px; max-height:280px; overflow-y:auto;';
+      dock.appendChild(hookListEl);
+
+      let addBtn=document.createElement('span');
+      addBtn.innerText='+ add hook';
+      addBtn.style='cursor:pointer; background:#000; color:#fff; padding:2px 6px; border-radius:3px; display:inline-block; margin-top:5px;';
+      dock.appendChild(addBtn);
+
+      // BAIT TRANSFORM ENGINE WITH CUSTOM JS
+      function applyBait(val, bait, context){
+        let s = String(val);
+        let num = parseFloat(val);
+        if(isNaN(num)) num = 0;
+
+        switch(bait.type){
+          case 'uppercase': return s.toUpperCase();
+          case 'lowercase': return s.toLowerCase();
+          case 'trimmed':   return s.trim();
+          case 'reverse':   return s.split('').reverse().join('');
+          case 'binary':    return (parseInt(s, 10) || 0).toString(2);
+          case 'decimal':   return parseInt(s, bait.param ? parseInt(bait.param) : 10) || 0;
+          case 'hex':       return (parseInt(s, 10) || 0).toString(16);
+          case 'octal':     return (parseInt(s, 10) || 0).toString(8);
+          case 'shift': {
+            let shiftVal = parseInt(bait.param) || 0;
+            let n = parseInt(s, 10) || 0;
+            return shiftVal >= 0 ? (n << shiftVal) : (n >> Math.abs(shiftVal));
+          }
+          case 'unicode':   return s.split('').map(c=>c.charCodeAt(0)).join(' ');
+          case 'length':    return s.length;
+          case 'words':     return s.trim() ? s.trim().split(/\s+/).length : 0;
+          case 'math': {
+            let op = bait.op || '+';
+            let p = parseFloat(bait.param) || 0;
+            if(op==='+') return num + p;
+            if(op==='-') return num - p;
+            if(op==='*') return num * p;
+            if(op==='/') return p !== 0 ? num / p : 0;
+            if(op==='floor') return Math.floor(num);
+            if(op==='pow') return Math.pow(num, p);
+            if(op==='sqrt') return Math.sqrt(num);
+            return num;
+          }
+          case 'js': {
+            try {
+              let fn = new Function('original', 'hooks', 'buckets', bait.code || 'return original;');
+              return fn(val, context.hookValues, context.buckets);
+            } catch(e) {
+              return '[js err]';
+            }
+          }
+          default: return val;
+        }
+      }
+
+      function compare(val, op, target){
+        let a=val, b=target;
+        if(typeof a==='boolean'){ b=(target==='true'); }
+        else if(!isNaN(parseFloat(a)) && a!=='' && !isNaN(parseFloat(b)) && b!==''){ a=parseFloat(a); b=parseFloat(b); }
+        if(op==='==') return a==b;
+        if(op==='!=') return a!=b;
+        if(op==='>') return a>b;
+        if(op==='<') return a<b;
+        if(op==='>=') return a>=b;
+        if(op==='<=') return a<=b;
+        return false;
+      }
+
+      function evalHooks(hooksArr, base_t, base_r, getValue){
+        let text=base_t, rtv=base_r;
+        let hookValues = {};
+        let buckets = {}; // Active runtime buckets
+
+        hooksArr.forEach(function(h, idx){
+          hookValues[h.id] = getValue(idx, h);
+        });
+
+        let context = { hookValues: hookValues, buckets: buckets };
+
+        hooksArr.forEach(function(h, idx){
+          let val = hookValues[h.id];
+          let out = null, target = null, concat = null;
+
+          if(h.mode==='direct'){
+            let pipedVal = val;
+            if(h.direct.baits && Array.isArray(h.direct.baits)){
+              h.direct.baits.forEach(function(bait){
+                pipedVal = applyBait(pipedVal, bait, context);
+              });
+            }
+            out = String(pipedVal); 
+            target = h.direct.target; 
+            concat = h.direct.concat;
+          } else {
+            let matched = false;
+            let processBranch = function(branch){
+              // Bucket Creation
+              if(branch.bucketName){
+                buckets[branch.bucketName] = branch.bucketVal !== undefined ? branch.bucketVal : true;
+              }
+              // Resolve Output (Static vs Hook Reference)
+              if(branch.outType === 'hook'){
+                out = hookValues[branch.outputHook] !== undefined ? String(hookValues[branch.outputHook]) : '';
+              } else {
+                out = branch.output;
+              }
+              target = branch.target;
+              concat = branch.concat;
+            };
+
+            for(let c=0; c<h.conditions.length; c++){
+              let cond = h.conditions[c];
+              let evalVal = val;
+              if(cond.source && cond.source !== 'self' && hookValues[cond.source] !== undefined){
+                evalVal = hookValues[cond.source];
+              }
+
+              if(compare(evalVal, cond.op, cond.val)){
+                processBranch(cond);
+                matched = true; 
+                break;
+              }
+            }
+            if(!matched && h.hasElse){
+              processBranch(h.elseOutput);
+            }
+          }
+
+          if(out !== null){
+            if(target === 'text'){ text = concat ? (text+' ('+out+')') : out; }
+            else { rtv = concat ? (rtv+' ('+out+')') : out; }
+          }
+        });
+        return {text:text, rt:rtv};
+      }
+
+      function buildHookInput(hook){
+        if(hook.type==='checkbox'){
+          let el=document.createElement('input'); el.type='checkbox';
+          return {el:el, get:function(){ return el.checked; }};
+        } else if(hook.type==='slider'){
+          let el=document.createElement('input'); el.type='range'; el.min=hook.config.min||0; el.max=hook.config.max||100;
+          return {el:el, get:function(){ return el.value; }};
+        } else if(hook.type==='text'){
+          let el=document.createElement('input'); el.type='text'; el.placeholder=hook.config.placeholder||'';
+          return {el:el, get:function(){ return el.value; }};
+        } else {
+          let el=document.createElement('select');
+          (hook.config.options||'a,b,c').split(',').map(function(s){return s.trim();}).filter(function(s){return s.length>0;}).forEach(function(o){
+            let opt=document.createElement('option'); opt.value=o; opt.innerText=o; el.appendChild(opt);
+          });
+          return {el:el, get:function(){ return el.value; }};
+        }
+      }
+
+      function makeHookCard(hook, index){
+        let card=document.createElement('div');
+        card.style='border:1px solid #ccc; padding:5px; background:#f7f7f7;';
+
+        let topRow=document.createElement('div');
+        topRow.style='display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;';
+        
+        let idBadge = document.createElement('span');
+        idBadge.innerText = 'Hook #' + hook.id;
+        idBadge.style = 'font-weight:bold; background:#000; color:#fff; padding:1px 4px; border-radius:2px; font-size:9px;';
+
+        let typeSel=document.createElement('select');
+        ['checkbox','slider','text','options'].forEach(function(t){ let o=document.createElement('option'); o.value=t; o.innerText=t; typeSel.appendChild(o); });
+        typeSel.value=hook.type;
+        
+        let removeBtn=document.createElement('span'); removeBtn.innerText='✕'; removeBtn.style='cursor:pointer; color:#900; font-weight:bold;';
+        removeBtn.onclick=function(){ state.hooks.splice(index,1); renderHookList(); };
+        
+        topRow.appendChild(idBadge);
+        topRow.appendChild(typeSel); 
+        topRow.appendChild(removeBtn);
+        card.appendChild(topRow);
+
+        let labelRow = document.createElement('div');
+        labelRow.style = 'display:flex; gap:4px; align-items:center; margin-bottom:4px; font-size:9px;';
+        let hideLabelsChk = document.createElement('input'); hideLabelsChk.type = 'checkbox'; hideLabelsChk.checked = !!hook.hideLabel;
+        hideLabelsChk.onchange = function(){ hook.hideLabel = hideLabelsChk.checked; customLabelIn.style.display = hook.hideLabel ? 'none' : 'inline-block'; };
+        
+        let customLabelIn = document.createElement('input'); customLabelIn.type = 'text'; customLabelIn.value = hook.label || ''; customLabelIn.placeholder = 'custom label'; customLabelIn.style = 'width:70px; font-size:8px; display:' + (hook.hideLabel ? 'none' : 'inline-block');
+        customLabelIn.oninput = function(){ hook.label = customLabelIn.value; };
+
+        labelRow.appendChild(hideLabelsChk); labelRow.appendChild(document.createTextNode('hide label'));
+        labelRow.appendChild(customLabelIn);
+        card.appendChild(labelRow);
+
+        let typeConfigWrap=document.createElement('div');
+        card.appendChild(typeConfigWrap);
+
+        function renderTypeConfig(){
+          typeConfigWrap.innerHTML='';
+          if(hook.type==='slider'){
+            let minIn=document.createElement('input'); minIn.type='number'; minIn.value=hook.config.min; minIn.style='width:35px;';
+            let maxIn=document.createElement('input'); maxIn.type='number'; maxIn.value=hook.config.max; maxIn.style='width:35px;';
+            minIn.oninput=function(){ hook.config.min=parseFloat(minIn.value); };
+            maxIn.oninput=function(){ hook.config.max=parseFloat(maxIn.value); };
+            let r=document.createElement('div'); r.style='display:flex; gap:4px; align-items:center; font-size:9px;';
+            r.appendChild(document.createTextNode('min')); r.appendChild(minIn);
+            r.appendChild(document.createTextNode('max')); r.appendChild(maxIn);
+            typeConfigWrap.appendChild(r);
+          } else if(hook.type==='text'){
+            let ph=document.createElement('input'); ph.type='text'; ph.value=hook.config.placeholder; ph.placeholder='placeholder'; ph.style='width:120px;';
+            ph.oninput=function(){ hook.config.placeholder=ph.value; };
+            typeConfigWrap.appendChild(ph);
+          } else if(hook.type==='options'){
+            let opts=document.createElement('input'); opts.type='text'; opts.value=hook.config.options; opts.placeholder='comma,separated,options'; opts.style='width:150px;';
+            opts.oninput=function(){ hook.config.options=opts.value; };
+            typeConfigWrap.appendChild(opts);
+          }
+        }
+        typeSel.onchange=function(){
+          hook.type=typeSel.value;
+          if(hook.type==='slider' && !hook.config.min && hook.config.min!==0){ hook.config={min:0,max:100}; }
+          if(hook.type==='text' && hook.config.placeholder===undefined){ hook.config={placeholder:''}; }
+          if(hook.type==='options' && hook.config.options===undefined){ hook.config={options:'a,b,c'}; }
+          renderTypeConfig();
+        };
+        renderTypeConfig();
+
+        let modeRow=document.createElement('div');
+        modeRow.style='margin-top:4px; display:flex; gap:4px; align-items:center;';
+        let modeSel=document.createElement('select');
+        [['direct','set as'],['conditional','if / elif / else']].forEach(function(p){ let o=document.createElement('option'); o.value=p[0]; o.innerText=p[1]; modeSel.appendChild(o); });
+        modeSel.value=hook.mode;
+        modeRow.appendChild(modeSel);
+        card.appendChild(modeRow);
+
+        let modeBody=document.createElement('div');
+        modeBody.style='margin-top:4px;';
+        card.appendChild(modeBody);
+
+        function targetRow(outObj, showOutputField){
+          let r=document.createElement('div');
+          r.style='display:flex; gap:3px; align-items:center; flex-wrap:wrap; margin-bottom:3px;';
+          let targetSel=document.createElement('select');
+          [['text','text'],['rt','rt']].forEach(function(p){ let o=document.createElement('option'); o.value=p[0]; o.innerText=p[1]; targetSel.appendChild(o); });
+          targetSel.value=outObj.target;
+          targetSel.onchange=function(){ outObj.target=targetSel.value; };
+          
+          let modeSel2=document.createElement('select');
+          [['false','replace'],['true','concat ()']].forEach(function(p){ let o=document.createElement('option'); o.value=p[0]; o.innerText=p[1]; modeSel2.appendChild(o); });
+          modeSel2.value=String(outObj.concat);
+          modeSel2.onchange=function(){ outObj.concat=(modeSel2.value==='true'); };
+          
+          r.appendChild(targetSel); r.appendChild(modeSel2);
+
+          if(showOutputField){
+            let outTypeSel = document.createElement('select'); outTypeSel.style='font-size:8px;';
+            let optText = document.createElement('option'); optText.value='text'; optText.innerText='val:'; outTypeSel.appendChild(optText);
+            let optHook = document.createElement('option'); optHook.value='hook'; optHook.innerText='Hook #'; outTypeSel.appendChild(optHook);
+            outTypeSel.value = outObj.outType || 'text';
+
+            let outIn = document.createElement('input'); outIn.type='text'; outIn.value=outObj.output!==undefined?outObj.output:''; outIn.placeholder='output'; outIn.style='width:55px; font-size:8px;';
+            outIn.oninput=function(){ outObj.output=outIn.value; };
+
+            let hookRefSel = document.createElement('select'); hookRefSel.style='font-size:8px; display:none;';
+            state.hooks.forEach(function(otherH){
+              let opt = document.createElement('option'); opt.value = otherH.id; opt.innerText = '#' + otherH.id; hookRefSel.appendChild(opt);
+            });
+            hookRefSel.value = outObj.outputHook || (state.hooks[0] ? state.hooks[0].id : 1);
+            hookRefSel.onchange = function(){ outObj.outputHook = hookRefSel.value; };
+
+            function updateOutVisibility(){
+              outObj.outType = outTypeSel.value;
+              if(outObj.outType === 'hook'){
+                outIn.style.display = 'none';
+                hookRefSel.style.display = 'inline-block';
+              } else {
+                outIn.style.display = 'inline-block';
+                hookRefSel.style.display = 'none';
+              }
+            }
+            outTypeSel.onchange = updateOutVisibility;
+            updateOutVisibility();
+
+            r.appendChild(outTypeSel); r.appendChild(outIn); r.appendChild(hookRefSel);
+
+            // BUCKET CONTROLS
+            let bucketWrap = document.createElement('span');
+            bucketWrap.style = 'display:inline-flex; gap:2px; align-items:center; font-size:8px; margin-left:2px;';
+            let bNameIn = document.createElement('input'); bNameIn.type='text'; bNameIn.value=outObj.bucketName||''; bNameIn.placeholder='bucket'; bNameIn.style='width:40px; font-size:8px;';
+            bNameIn.oninput = function(){ outObj.bucketName = bNameIn.value; };
+            let bValIn = document.createElement('input'); bValIn.type='text'; bValIn.value=outObj.bucketVal!==undefined?outObj.bucketVal:''; bValIn.placeholder='val'; bValIn.style='width:30px; font-size:8px;';
+            bValIn.oninput = function(){ outObj.bucketVal = bValIn.value; };
+            
+            bucketWrap.appendChild(document.createTextNode('🪣'));
+            bucketWrap.appendChild(bNameIn); bucketWrap.appendChild(bValIn);
+            r.appendChild(bucketWrap);
+          }
+          return r;
+        }
+
+        // BAIT PIPELINE UI WITH CUSTOM JS SUPPORT
+        function renderBaitList(baitsArr, parentEl){
+          let wrap = document.createElement('div');
+          wrap.style = 'margin-top:4px; padding:4px; background:#eee; border:1px solid #ddd; border-radius:3px;';
+          let header = document.createElement('div');
+          header.style = 'font-weight:bold; font-size:9px; margin-bottom:3px; display:flex; justify-content:space-between;';
+          header.innerHTML = '<span>baits (transforms):</span>';
+
+          let listContainer = document.createElement('div');
+          listContainer.style = 'display:flex; flex-direction:column; gap:3px;';
+
+          const baitTypes = ['uppercase','lowercase','trimmed','reverse','binary','decimal','hex','octal','shift','unicode','length','words','math','js'];
+
+          function renderBaitItems(){
+            listContainer.innerHTML = '';
+            baitsArr.forEach(function(b, bIdx){
+              let row = document.createElement('div');
+              row.style = 'display:flex; gap:3px; align-items:center; font-size:9px; flex-wrap:wrap;';
+              
+              let numLabel = document.createElement('span'); numLabel.innerText = (bIdx+1)+'.';
+              let bSel = document.createElement('select'); bSel.style = 'font-size:9px;';
+              baitTypes.forEach(function(bt){
+                let opt = document.createElement('option'); opt.value = bt; opt.innerText = bt; bSel.appendChild(opt);
+              });
+              bSel.value = b.type;
+
+              let paramWrap = document.createElement('span');
+              
+              function renderParamInput(){
+                paramWrap.innerHTML = '';
+                if(b.type==='shift'){
+                  let pIn = document.createElement('input'); pIn.type='number'; pIn.value=b.param!==undefined?b.param:-1; pIn.placeholder='-1'; pIn.style='width:30px; font-size:8px;';
+                  pIn.oninput = function(){ b.param = pIn.value; };
+                  if(b.param===undefined) b.param = -1;
+                  paramWrap.appendChild(pIn);
+                } else if(b.type==='decimal'){
+                  let pIn = document.createElement('input'); pIn.type='number'; pIn.value=b.param!==undefined?b.param:10; pIn.placeholder='from base'; pIn.style='width:35px; font-size:8px;';
+                  pIn.oninput = function(){ b.param = pIn.value; };
+                  if(b.param===undefined) b.param = 10;
+                  paramWrap.appendChild(pIn);
+                } else if(b.type==='math'){
+                  let opSel = document.createElement('select'); opSel.style='font-size:8px;';
+                  ['+','-','*','/','floor','pow','sqrt'].forEach(function(o){ let opt=document.createElement('option'); opt.value=o; opt.innerText=o; opSel.appendChild(opt); });
+                  opSel.value = b.op || '+';
+                  opSel.onchange = function(){ b.op = opSel.value; renderParamInput(); };
+                  b.op = opSel.value;
+                  paramWrap.appendChild(opSel);
+
+                  if(['+','-','*','/','pow'].includes(b.op)){
+                    let pIn = document.createElement('input'); pIn.type='number'; pIn.value=b.param!==undefined?b.param:1; pIn.style='width:30px; font-size:8px;';
+                    pIn.oninput = function(){ b.param = pIn.value; };
+                    if(b.param===undefined) b.param = 1;
+                    paramWrap.appendChild(pIn);
+                  }
+                } else if(b.type==='js'){
+  let codeIn = document.createElement('input'); codeIn.type='text'; codeIn.value=b.code||'return original;'; codeIn.placeholder='return original;'; codeIn.style='width:95px; font-size:8px; font-family:monospace;';
+  codeIn.oninput = function(){ b.code = codeIn.value; };
+  paramWrap.appendChild(codeIn);
+
+  // 'i' HOVER DOCUMENTATION POPUP
+  let infoWrap = document.createElement('ruby');
+  infoWrap.style = 'position:relative; display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; margin-left:2px;';
+
+  let infoRt = document.createElement('rt');
+  infoRt.style = 'display:none; position:absolute; bottom:100%; left:50%; transform:translateX(-50%); background:#000; color:#fff; padding:3px 5px; font-size:8px; border-radius:3px; white-space:nowrap; z-index:1000; box-shadow:2px 2px 0 #888; font-family:monospace; pointer-events:none; margin-bottom:2px;';
+  infoRt.innerHTML = '<b>js bait</b><br> <code>original</code> → current input text/number<br> <code>hooks[1]</code> → value from Hook #1<br> <code>buckets[\'key\']</code> → active condition variable<br><i>Must include a <code>return</code> statement!</i>';
+
+  let infoBtn = document.createElement('span');
+  infoBtn.innerText = 'ⓘ';
+  infoBtn.style = 'font-size:9px; cursor:help; color:#555; background:#ddd; border-radius:50%; width:11px; height:11px; display:inline-flex; align-items:center; justify-content:center; text-align:center; line-height:1;';
+
+  infoBtn.onmouseenter = function(){ infoRt.style.display = 'block'; };
+  infoBtn.onmouseleave = function(){ infoRt.style.display = 'none'; };
+
+  infoWrap.appendChild(infoRt);
+  infoWrap.appendChild(infoBtn);
+  paramWrap.appendChild(infoWrap);
+}
+              }
+
+              bSel.onchange = function(){
+                b.type = bSel.value;
+                b.param = undefined; b.op = undefined; b.code = undefined;
+                renderParamInput();
+              };
+              renderParamInput();
+
+              let upBtn = document.createElement('span'); upBtn.innerText='▲'; upBtn.style='cursor:pointer; font-size:8px;';
+              upBtn.onclick = function(){ if(bIdx>0){ let tmp=baitsArr[bIdx]; baitsArr[bIdx]=baitsArr[bIdx-1]; baitsArr[bIdx-1]=tmp; renderBaitItems(); } };
+              let dnBtn = document.createElement('span'); dnBtn.innerText='▼'; dnBtn.style='cursor:pointer; font-size:8px;';
+              dnBtn.onclick = function(){ if(bIdx<baitsArr.length-1){ let tmp=baitsArr[bIdx]; baitsArr[bIdx]=baitsArr[bIdx+1]; baitsArr[bIdx+1]=tmp; renderBaitItems(); } };
+
+              let delBtn = document.createElement('span'); delBtn.innerText='✕'; delBtn.style='cursor:pointer; color:#900; font-weight:bold; margin-left:auto;';
+              delBtn.onclick = function(){ baitsArr.splice(bIdx, 1); renderBaitItems(); addBaitBtn.style.display='inline-block'; };
+
+              row.appendChild(numLabel); row.appendChild(bSel); row.appendChild(paramWrap);
+              row.appendChild(upBtn); row.appendChild(dnBtn); row.appendChild(delBtn);
+              listContainer.appendChild(row);
+            });
+          }
+
+          let addBaitBtn = document.createElement('span');
+          addBaitBtn.innerText = '+ add bait';
+          addBaitBtn.style = 'cursor:pointer; background:#333; color:#fff; padding:1px 4px; border-radius:2px; font-size:8px; display:inline-block; margin-top:3px;';
+          addBaitBtn.onclick = function(){
+            if(baitsArr.length >= 4) return;
+            baitsArr.push({ type: 'trimmed' });
+            renderBaitItems();
+            if(baitsArr.length >= 4) addBaitBtn.style.display = 'none';
+          };
+
+          wrap.appendChild(header);
+          wrap.appendChild(listContainer);
+          wrap.appendChild(addBaitBtn);
+          renderBaitItems();
+          if(baitsArr.length >= 4) addBaitBtn.style.display = 'none';
+          parentEl.appendChild(wrap);
+        }
+
+        function renderModeBody(){
+          modeBody.innerHTML='';
+          if(hook.mode==='direct'){
+            if(!hook.direct.baits) hook.direct.baits = [];
+            modeBody.appendChild(targetRow(hook.direct, false));
+            renderBaitList(hook.direct.baits, modeBody);
+          } else {
+            hook.conditions.forEach(function(cond, ci){
+              let condRow=document.createElement('div');
+              condRow.style='display:flex; gap:3px; align-items:center; flex-wrap:wrap; border-top:1px dotted #ddd; padding-top:3px; margin-top:3px; font-size:9px;';
+              let label=document.createElement('span'); label.innerText= ci===0?'if':'elif'; label.style='font-weight:bold;';
+              
+              let sourceSel = document.createElement('select'); sourceSel.style = 'font-size:8px;';
+              let optSelf = document.createElement('option'); optSelf.value = 'self'; optSelf.innerText = 'self'; sourceSel.appendChild(optSelf);
+              state.hooks.forEach(function(otherH){
+                if(otherH.id !== hook.id){
+                  let optOther = document.createElement('option'); optOther.value = otherH.id; optOther.innerText = 'Hook #' + otherH.id; sourceSel.appendChild(optOther);
+                }
+              });
+              sourceSel.value = cond.source || 'self';
+              sourceSel.onchange = function(){ cond.source = sourceSel.value; };
+
+              let opSel=document.createElement('select');
+              ['==','!=','>','<','>=','<='].forEach(function(o){ let opt=document.createElement('option'); opt.value=o; opt.innerText=o; opSel.appendChild(opt); });
+              opSel.value=cond.op;
+              opSel.onchange=function(){ cond.op=opSel.value; };
+              let valIn=document.createElement('input'); valIn.type='text'; valIn.value=cond.val; valIn.style='width:35px;';
+              valIn.oninput=function(){ cond.val=valIn.value; };
+              let rmCondBtn=document.createElement('span'); rmCondBtn.innerText='✕'; rmCondBtn.style='cursor:pointer; color:#900;';
+              rmCondBtn.onclick=function(){ hook.conditions.splice(ci,1); renderModeBody(); };
+              
+              condRow.appendChild(label); condRow.appendChild(sourceSel); condRow.appendChild(opSel); condRow.appendChild(valIn); condRow.appendChild(rmCondBtn);
+              modeBody.appendChild(condRow);
+              modeBody.appendChild(targetRow(cond, true));
+            });
+            if(hook.conditions.length<3){
+              let addCondBtn=document.createElement('span');
+              addCondBtn.innerText='+ elif';
+              addCondBtn.style='cursor:pointer; color:#06c; font-size:9px;';
+              addCondBtn.onclick=function(){
+                hook.conditions.push({source:'self', op:'==', val:'', target:'text', concat:false, output:'', outType:'text'});
+                renderModeBody();
+              };
+              modeBody.appendChild(addCondBtn);
+            }
+            let elseWrap=document.createElement('div');
+            elseWrap.style='border-top:1px dotted #ddd; padding-top:3px; margin-top:3px;';
+            let elseChk=document.createElement('input'); elseChk.type='checkbox'; elseChk.checked=hook.hasElse;
+            let elseLbl=document.createElement('span'); elseLbl.innerText=' else'; elseLbl.style='font-weight:bold;';
+            elseWrap.appendChild(elseChk); elseWrap.appendChild(elseLbl);
+            modeBody.appendChild(elseWrap);
+            if(hook.hasElse){
+              modeBody.appendChild(targetRow(hook.elseOutput, true));
+            }
+            elseChk.onchange=function(){ hook.hasElse=elseChk.checked; renderModeBody(); };
+          }
+        }
+        modeSel.onchange=function(){ hook.mode=modeSel.value; renderModeBody(); };
+        renderModeBody();
+
+        return card;
+      }
+
+      function renderHookList(){
+        hookListEl.innerHTML='';
+        state.hooks.forEach(function(h, i){ hookListEl.appendChild(makeHookCard(h, i)); });
+        addBtn.style.display = state.hooks.length>=5 ? 'none' : 'inline-block';
+      }
+
+      addBtn.onclick=function(){
+        if(state.hooks.length>=5) return;
+        let nextId = state.hooks.length > 0 ? Math.max(...state.hooks.map(h=>h.id)) + 1 : 1;
+        state.hooks.push({ id: nextId, type:'checkbox', label:'', hideLabel:false, config:{}, mode:'direct', direct:{target:'text', concat:false, baits:[]}, conditions:[{source:'self', op:'==', val:'true', target:'text', concat:false, output:'', outType:'text'}], hasElse:false, elseOutput:{target:'text', concat:false, output:'', outType:'text'} });
+        renderHookList();
+      };
+
+      exportBtn.onclick = function() {
+  // Build a squeaky-clean structure stripped of any runtime artifacts
+  let cleanPayload = {
+    version: state.version,
+    baseText: state.baseText,
+    baseRt: state.baseRt,
+    hooks: state.hooks.map(function(h) {
+      let cleanHook = {
+        id: h.id,
+        type: h.type,
+        label: h.label || '',
+        hideLabel: !!h.hideLabel,
+        config: Object.assign({}, h.config),
+        mode: h.mode
+      };
+
+      if (h.mode === 'direct') {
+        cleanHook.direct = {
+          target: h.direct.target,
+          concat: !!h.concat,
+          baits: (h.direct.baits || []).map(function(b) {
+            let cleanBait = { type: b.type };
+            if (b.param !== undefined) cleanBait.param = b.param;
+            if (b.op !== undefined) cleanBait.op = b.op;
+            if (b.code !== undefined) cleanBait.code = b.code;
+            return cleanBait;
+          })
+        };
+      } else {
+        cleanHook.conditions = (h.conditions || []).map(function(c) {
+          let cleanCond = {
+            source: c.source || 'self',
+            op: c.op,
+            val: c.val,
+            target: c.target,
+            concat: !!c.concat,
+            outType: c.outType || 'text'
+          };
+          if (c.outType === 'hook') cleanCond.outputHook = c.outputHook;
+          else cleanCond.output = c.output || '';
+          
+          if (c.bucketName) {
+            cleanCond.bucketName = c.bucketName;
+            cleanCond.bucketVal = c.bucketVal;
+          }
+          return cleanCond;
+        });
+
+        cleanHook.hasElse = !!h.hasElse;
+        if (h.hasElse && h.elseOutput) {
+          let cleanElse = {
+            target: h.elseOutput.target,
+            concat: !!h.elseOutput.concat,
+            outType: h.elseOutput.outType || 'text'
+          };
+          if (cleanElse.outType === 'hook') cleanElse.outputHook = h.elseOutput.outputHook;
+          else cleanElse.output = h.elseOutput.output || '';
+
+          if (h.elseOutput.bucketName) {
+            cleanElse.bucketName = h.elseOutput.bucketName;
+            cleanElse.bucketVal = h.elseOutput.bucketVal;
+          }
+          cleanHook.elseOutput = cleanElse;
+        }
+      }
+
+      return cleanHook;
+    })
+  };
+
+  let payload = btoa(unescape(encodeURIComponent(JSON.stringify(cleanPayload))));
+  prompt('widget config (clean copy):', payload);
+};
+      importBtn.onclick=function(){
+        let str=prompt('paste widget config:');
+        if(!str) return;
+        try{
+          let loaded=JSON.parse(decodeURIComponent(escape(atob(str))));
+          state.hooks=loaded.hooks; state.baseText=loaded.baseText; state.baseRt=loaded.baseRt;
+          state.version=loaded.version || '1.0.0';
+          verInput.value=state.version;
+          baseTextIn.value=state.baseText; baseRtIn.value=state.baseRt;
+          renderHookList();
+        } catch(e){ alert('invalid config string'); }
+      };
+      clearBtn.onclick=function(){
+        state.hooks=[]; state.baseText='widget'; state.baseRt=''; state.version='1.0.0';
+        verInput.value=state.version;
+        baseTextIn.value=state.baseText; baseRtIn.value=state.baseRt;
+        renderHookList();
+      };
+
+      let livePop=document.createElement('div');
+      livePop.className='bw-live-pop';
+      livePop.style='display:none; position:absolute; top:20px; left:0; border:1px solid black; background:white; padding:6px; z-index:999; font-size:10px; font-family:monospace; color:#000; box-shadow:3px 3px 0px black;';
+
+      function refreshLive(){
+        livePop.innerHTML='';
+        let inputRefs=state.hooks.map(function(h){
+          let built=buildHookInput(h);
+          let r=document.createElement('div'); r.style='display:flex; gap:4px; align-items:center; margin-bottom:3px;';
+          
+          if(!h.hideLabel){
+            let lblText = h.label ? h.label : (h.type + ' #' + h.id);
+            r.appendChild(document.createTextNode(lblText + ': '));
+          }
+          
+          r.appendChild(built.el);
+          livePop.appendChild(r);
+          built.el.oninput=recompute; built.el.onchange=recompute;
+          return built;
+        });
+
+        let verBadge = document.createElement('div');
+        verBadge.style = 'font-size:8px; color:#888; border-top:1px solid #eee; margin-top:4px; padding-top:2px; text-align:right;';
+        verBadge.innerText = 'v' + state.version;
+        livePop.appendChild(verBadge);
+
+        function recompute(){
+          let res=evalHooks(state.hooks, state.baseText, state.baseRt, function(idx){ return inputRefs[idx].get(); });
+          mainSpan.innerText=res.text;
+          rtDisplay.innerText=res.rt;
+        }
+        recompute();
+      }
+
+      function switchToLive(){
+        state.mode='live';
+        dock.style.display='none';
+        toggleBtn.style.display='inline-block';
+        rtDisplay.style.display='inline-block';
+        refreshLive();
+        livePop.style.display='none';
+      }
+      function switchToBuild(){
+        state.mode='build';
+        livePop.style.display='none';
+        toggleBtn.style.display='none';
+        rtDisplay.style.display='none';
+        mainSpan.innerText='widget builder';
+        dock.style.display='block';
+      }
+      goLiveBtn.onclick=switchToLive;
+      toggleBtn.onclick=switchToBuild;
+
+      toggleBtn.style.position = 'absolute';
+      toggleBtn.style.top = '100%';
+      toggleBtn.style.right = '0';
+      toggleBtn.style.marginTop = '2px';
+
+      rt.appendChild(dock);
+      rt.appendChild(livePop);
+      renderHookList();
+
+      mainSpan.onclick=function(){
+        if(state.mode==='build'){
+          dock.style.display=(dock.style.display==='none')?'block':'none';
+        } else {
+          livePop.style.display=(livePop.style.display==='none')?'block':'none';
+        }
+      };
+    }
+  ">widget builder</span><span class="bw-toggle" style="display:none; cursor:pointer; font-size:9px; border:1px solid #000; padding:0 3px; border-radius:2px; background:#fff; z-index:100;">⚙</span>
+</ruby>
+    <button class="copy-btn" onclick="copyWidget(this)">copy</button>
+  </div>
+
+  <script>
+    function filterWidgets(query) {
+      let boxes = document.querySelectorAll('.widget-box');
+      let total = boxes.length;
+      let count = 0;
+      let q = query.toLowerCase().trim();
+
+      boxes.forEach(function(box) {
+        let text = box.innerText.toLowerCase();
+        let inputs = Array.from(box.querySelectorAll('input, textarea')).map(i => (i.value || '') + ' ' + (i.placeholder || '')).join(' ').toLowerCase();
+        let combined = text + ' ' + inputs;
+
+        if(!q || combined.includes(q)) {
+          box.style.display = 'inline-flex';
+          count++;
+        } else {
+          box.style.display = 'none';
+        }
+      });
+
+      let status = document.getElementById('search-status');
+      status.innerText = q ? (count + ' of ' + total + ' found') : 'All visible';
+    }
+
+    function copyWidget(btn) {
+      let box = btn.parentElement.firstElementChild;
+      navigator.clipboard.writeText(box.outerHTML);
+      let orig = btn.innerText;
+      btn.innerText = 'copied!';
+      setTimeout(() => btn.innerText = orig, 600);
+    }
+  </script>
+</body>
+</html>
